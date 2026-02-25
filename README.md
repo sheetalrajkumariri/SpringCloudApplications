@@ -5,27 +5,28 @@ This project is a Book Store system built using Spring Boot and Spring Cloud Mic
 Each feature is developed as a separate microservice.
 All services communicate using:
 
-Eureka Discovery Server
+    Eureka Discovery Server
 
-API Gateway
+    API Gateway
 
-Feign Client
+    Feign Client
 
-Kafka (Event Messaging)
+    Kafka (Event Messaging)
 
 Flyway (Database Migration)
 
 🏗 Architecture Flow
 
-Client → API Gateway → Microservices
-Services → Register in Discovery Server
-Services → Communicate using Feign
-Events → Communicate using Kafka
+    Client → API Gateway → Microservices
+    Services → Register in Discovery Server
+    Services → Communicate using Feign
+    Events → Communicate using Kafka
 
 📦 Services in This Project
 
    1️⃣ Discovery Service
-     📁 discovery-service
+   
+    📁 discovery-service
 
    Purpose:
 
@@ -49,70 +50,70 @@ Events → Communicate using Kafka
     Hides internal service URLs
 
 Flow:
-   Client → API Gateway → Required Service
+     Client → API Gateway → Required Service
 
 3️⃣ Book Store Service
    📁 book-store-service
    
-   This is the main business service.
+    This is the main business service.
 
-   Manages:
+    Manages:
 
-   Books
+    Books
 
-   Customers
+    Customers
 
-   Orders
+    Orders
 
-  Features:
+    Features:
 
-✔ Add / Update / Delete Book
-✔ Create / Get Customer
-✔ Create / Get Order
+    ✔ Add / Update / Delete Book
+    ✔ Create / Get Customer
+    ✔ Create / Get Order
 
 🗄 Database
 
-MySQL or H2
+    MySQL or H2
 
-Spring Data JPA
+    Spring Data JPA
 
-Hibernate
+    Hibernate
 
-Each service can have its own database.
+    Each service can have its own database.
 
 🛠 Flyway
 
-Flyway is used for database version control.
+    Flyway is used for database version control.
 
 Why Flyway?
 
-Automatically creates tables
+    Automatically creates tables
 
-Manages schema versions
+    Manages schema versions
 
-Runs SQL scripts on application startup
+    Runs SQL scripts on application startup
 
 Example:
 
-V1__create_book_table.sql
+    V1__create_book_table.sql
 
-V2__create_customer_table.sql
+    V2__create_customer_table.sql
 
 🔗 Feign Client
 
-Feign is used for service-to-service communication.
+    Feign is used for service-to-service communication.
 
 Why Feign?
 
-Easy REST communication
+    Easy REST communication
 
-Uses service name from Discovery Server
+    Uses service name from Discovery Server
 
-No need to manually write RestTemplate
+    No need to manually write RestTemplate
 
 Example:
 
-Order calls Customer service using Feign
+    Order calls Customer service using Feign
 
 📝 Review Service
 
@@ -120,11 +121,11 @@ Order calls Customer service using Feign
 
 Purpose:
 
-Add review
+    Add review
 
-Get reviews by book
+    Get reviews by book
 
-This service is separate to keep review logic independent.
+    This service is separate to keep review logic independent.
 
 🔔 Notification Service
 
@@ -132,128 +133,128 @@ This service is separate to keep review logic independent.
 
 Purpose:
 
-Sends notifications when events happen
+    Sends notifications when events happen
 
 📢 Kafka Integration
 
-Kafka is used for event-based communication between services.
+    Kafka is used for event-based communication between services.
 
 In this project:
 
-✅ Producer:
+    ✅ Producer:
 
-Book Store Service
+       Book Store Service
 
-When a new Book is created
+      When a new Book is created
 
-When a new Order is placed
+     When a new Order is placed
 
-When a Customer is created
+     When a Customer is created
 
-Book Store Service sends message to Kafka topic.
+    Book Store Service sends message to Kafka topic.
 
-✅ Consumer:
+    ✅ Consumer:
 
-Notification Service
+     Notification Service
 
-Listens to Kafka topic
+    Listens to Kafka topic
 
-Receives messages
+    Receives messages
 
-Sends notification (log/email/etc.)
+    Sends notification (log/email/etc.)
 
 🔄 Kafka Flow
 
-Book Store Service (Producer)
-→ Sends message to Kafka Topic
-→ Notification Service (Consumer) reads message
-→ Notification is processed
+    Book Store Service (Producer)
+    → Sends message to Kafka Topic
+    → Notification Service (Consumer) reads message
+    → Notification is processed
 
-This is called Asynchronous Communication
-Services do not directly call each other.
+    This is called Asynchronous Communication
+    Services do not directly call each other.
 
 📘 Kafka Reference Tutorial
 
-Kafka implementation is based on this guide:
+    Kafka implementation is based on this guide:
 
-👉 https://www.javaguides.net/2022/06/spring-boot-apache-kafka-tutorial.html
+    👉 https://www.javaguides.net/2022/06/spring-boot-apache-kafka-tutorial.html
 
 This tutorial explains:
 
-Kafka Producer
+    Kafka Producer
 
-Kafka Consumer
+    Kafka Consumer
 
-Kafka Configuration
+    Kafka Configuration
 
-Topic setup in Spring Boot
+    Topic setup in Spring Boot
 
 🔄 How Everything Connects
 
-All services register in Discovery Server.
+    All services register in Discovery Server.
 
-Client calls API Gateway.
+    Client calls API Gateway.
 
-Gateway routes request to correct service.
+    Gateway routes request to correct service.
 
-Services communicate using Feign Client.
+    Services communicate using Feign Client.
 
-Book Store Service sends events to Kafka.
+    Book Store Service sends events to Kafka.
 
-Notification Service consumes Kafka events.
+    Notification Service consumes Kafka events.
 
-Flyway manages database schema.
+    Flyway manages database schema.
 
-JPA connects service with database.
+    JPA connects service with database.
 
 🧰 Technologies Used
 
-Java
+    Java
 
-Spring Boot
+    Spring Boot
 
-Spring Cloud
+    Spring Cloud
 
-Eureka Discovery
+    Eureka Discovery
 
-Spring Cloud Gateway
+    Spring Cloud Gateway
 
-Spring Data JPA
+    Spring Data JPA
 
-Hibernate
+    Hibernate
 
-Flyway
+    Flyway
 
-Feign Client
+    Feign Client
 
-Apache Kafka
+    Apache Kafka
 
-REST APIs
+    REST APIs
 
-MySQL / H2
+    MySQL / H2
 
 🎯 Why This Project?
 
-This project demonstrates:
+    This project demonstrates:
 
-✔ Microservices Architecture
-✔ Service Discovery
-✔ API Gateway Pattern
-✔ Inter-service Communication using Feign
-✔ Event-driven Architecture using Kafka
-✔ Database Migration using Flyway
+    ✔ Microservices Architecture
+    ✔ Service Discovery
+    ✔ API Gateway Pattern
+    ✔ Inter-service Communication using Feign
+    ✔ Event-driven Architecture using Kafka
+    ✔ Database Migration using Flyway
 
 🚀 Final Summary
 
-This is a complete Book Store Microservices system where:
+    This is a complete Book Store Microservices system where:
 
-Discovery handles service registration
+    Discovery handles service registration
 
-Gateway handles routing
+    Gateway handles routing
 
-Book Store Service manages business logic and produces Kafka events
+    Book Store Service manages business logic and produces Kafka events
 
-Notification Service consumes Kafka events
+    Notification Service consumes Kafka events
 
 Review Service handles reviews
 
