@@ -1,0 +1,35 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: gateway-service
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: book-store-service
+          uri: lb://book-store-service
+          predicates:
+            - Path=/book-store-service/**
+        - id: review-service
+          uri: lb://review-service
+          predicates:
+            - Path=/review-service/**
+        - id: notifications-service
+          uri: lb://notifications-service
+          predicates:
+            - Path=/notifications-service/**
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
