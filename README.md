@@ -23,51 +23,48 @@ Services → Communicate using Feign
 Events → Communicate using Kafka
 
 📦 Services in This Project
-1️⃣ Discovery Service
 
-📁 discovery-service
+   1️⃣ Discovery Service
+     📁 discovery-service
 
-Purpose:
+   Purpose:
 
-Registers all services
+    Registers all services
 
-Helps services find each other
+    Helps services find each other
 
-No hardcoded URLs needed
+    No hardcoded URLs needed
 
-All services register here when they start.
+    All services register here when they start.
 
 2️⃣ API Gateway Service
+   📁 api-gateway-service
 
-📁 api-gateway-service
+   Purpose:
 
-Purpose:
+    Single entry point for client
 
-Single entry point for client
+    Routes request to correct service
 
-Routes request to correct service
-
-Hides internal service URLs
+    Hides internal service URLs
 
 Flow:
-
-Client → API Gateway → Required Service
+   Client → API Gateway → Required Service
 
 3️⃣ Book Store Service
+   📁 book-store-service
+   
+   This is the main business service.
 
-📁 book-store-service
+   Manages:
 
-This is the main business service.
+   Books
 
-Manages:
+   Customers
 
-Books
+   Orders
 
-Customers
-
-Orders
-
-Features:
+  Features:
 
 ✔ Add / Update / Delete Book
 ✔ Create / Get Customer
